@@ -68,43 +68,40 @@ class Dados extends Conexao
 
     function insert($obj)
     {
-        $sql = "INSERT INTO medico(crm,nome,senha) VALUES (:crm,:nome,:senha)";
+        $sql = "INSERT INTO dados(Usuario_idUsuario,Dreneagem_inicial,Dreneagem_final,Liquido,Data_2) VALUES (:Usuario_idUsuario,:Dreneagem_inicial,:Dreneagem_final,:Liquido,:Data_2)";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('crm', $obj->crm);
-        $consulta->bindValue('nome', $obj->nome);
+        $consulta->bindValue('Usuario_idUsuario', $obj->Usuario_idUsuario);
+        $consulta->bindValue('Dreneagem_inicial', $obj->Dreneagem_inicial);
+        $consulta->bindValue('Dreneagem_final', $obj->Dreneagem_final);
+        $consulta->bindValue('Liquido', $obj->Liquido);
+        $consulta->bindValue('Data_2', $obj->Data_2);
         return $consulta->execute();
     }
 
-    function update($obj, $crm = null)
+    function update($obj, $Liquido = null)
     {
-        $sql = "UPDATE medico SET nome = :nome WHERE crm = :crm ";
+        $sql = "UPDATE dados SET Liquido = :Liquido WHERE  idUsuario = :idUsuario ";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('nome', $obj->nome);
-        $consulta->bindValue('crm', $crm);
+        $consulta->bindValue('idUsuario', $obj->idUsuario);
+        $consulta->bindValue('Liquido', $Liquido);
         return $consulta->execute();
     }
 
-    function delete($obj, $crm = null)
-    {
-        $sql = "DELETE FROM medico WHERE crm = :crm";
-        $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('crm', $crm);
-        $consulta->execute();
-    }
 
     function findAll()
     {
-        $sql = "SELECT * FROM medico";
+        $sql = "SELECT * FROM dados WHERE idUsuario = :idUsuario";
         $consulta = Conexao::prepare($sql);
+        $consulta->bindValue('idUsuario', $obj->idUsuario);
         $consulta->execute();
         return $consulta->fetchAll();
     }
 
-    function find($crm = null)
+    function find($Usuario_idUsuario = null)
     {
-        $sql = "SELECT * FROM medico WHERE crm=:crm";
+        $sql = "SELECT * FROM dados WHERE idUsuario=:idUsuario";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('crm', $crm);
+        $consulta->bindValue('idUsuario', $idUsuario);
         $consulta->execute();
         return $consulta->fetchAll();
     }

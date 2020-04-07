@@ -8,7 +8,7 @@ class Usuario extends Conexao
     private $Medico_idMedico;
     private $CPF;
     private $Senha;
-
+    
 
     function getMedico_idMedico()
     {
@@ -60,44 +60,45 @@ class Usuario extends Conexao
 
     function insert($obj)
     {
-        $sql = "INSERT INTO medico(crm,nome,senha) VALUES (:crm,:nome,:senha)";
+        $sql = "INSERT INTO usuario(Nome,Medico_idMedico,CPF,Senha) VALUES (:Nome,:Medico_idMedico,:CPF,:Senha)";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('crm', $obj->crm);
-        $consulta->bindValue('nome', $obj->nome);
-        $consulta->bindValue('senha', $this->gerarHashSenha($obj->senha));
+        $consulta->bindValue('Nome', $obj->Nome);
+        $consulta->bindValue('Medico_idMedico', $obj->Medico_idMedico);
+        $consulta->bindValue('CPF', $obj->CPF);
+        $consulta->bindValue('Senha', $this->gerarHashSenha($obj->Senha));
         return $consulta->execute();
     }
 
-    function update($obj, $crm = null)
+    function update($obj, $Senha = null)
     {
-        $sql = "UPDATE medico SET nome = :nome WHERE crm = :crm ";
+        $sql = "UPDATE usuario SET senha = :Senha WHERE cpf = :CPF ";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('nome', $obj->nome);
-        $consulta->bindValue('crm', $crm);
+        $consulta->bindValue('Senha', $this->gerarHashSenha($obj->Senha));
+        $consulta->bindValue('CPF', $obj->CPF);
         return $consulta->execute();
     }
 
-    function delete($obj, $crm = null)
+    function delete($obj, $CPF = null)
     {
-        $sql = "DELETE FROM medico WHERE crm = :crm";
+        $sql = "DELETE FROM usuario WHERE cpf = :CPF";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('crm', $crm);
+        $consulta->bindValue('CPF', $CPF);
         $consulta->execute();
     }
 
     function findAll()
     {
-        $sql = "SELECT * FROM medico";
+        $sql = "SELECT * FROM usuario";
         $consulta = Conexao::prepare($sql);
         $consulta->execute();
         return $consulta->fetchAll();
     }
     
-    function find($crm=null)
+    function find($CPF=null)
     {
-        $sql = "SELECT * FROM medico WHERE crm=:crm";
+        $sql = "SELECT * FROM usuario WHERE cpf = :CPF";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('crm', $crm);
+        $consulta->bindValue('CPF', $CPF);
         $consulta->execute();
         return $consulta->fetchAll();
     }

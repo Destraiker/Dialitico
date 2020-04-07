@@ -5,7 +5,7 @@ class Medico extends Conexao
 {
     private $idMedico;
     private $Nome;
-    private $Crm;
+    private $CRM;
     private $Login;
     private $Senha;
 
@@ -60,28 +60,29 @@ class Medico extends Conexao
 
     function insert($obj)
     {
-        $sql = "INSERT INTO medico(crm,nome,senha) VALUES (:crm,:nome,:senha)";
+        $sql = "INSERT INTO medico(Nome,CRM,Login,Senha) VALUES (:Nome,:CRM,:login,:Senha)";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('crm', $obj->crm);
-        $consulta->bindValue('nome', $obj->nome);
-        $consulta->bindValue('senha', $this->gerarHashSenha($obj->senha));
+        $consulta->bindValue('Nome', $obj->Nome);
+        $consulta->bindValue('CRM', $obj->Crm);
+        $consulta->bindValue('Login', $obj->Login);
+        $consulta->bindValue('Senha', $this->gerarHashSenha($obj->Senha));
         return $consulta->execute();
     }
 
     function update($obj, $crm = null)
     {
-        $sql = "UPDATE medico SET nome = :nome WHERE crm = :crm ";
+        $sql = "UPDATE medico SET nome = :Nome WHERE crm = :CRM ";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('nome', $obj->nome);
-        $consulta->bindValue('crm', $crm);
+        $consulta->bindValue('Nome', $obj->Nome);
+        $consulta->bindValue('CRM', $Crm);
         return $consulta->execute();
     }
 
-    function delete($obj, $crm = null)
+    function delete($obj, $CRM = null)
     {
-        $sql = "DELETE FROM medico WHERE crm = :crm";
+        $sql = "DELETE FROM medico WHERE crm = :Crm";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('crm', $crm);
+        $consulta->bindValue('Crm', $Crm);
         $consulta->execute();
     }
 
@@ -93,18 +94,20 @@ class Medico extends Conexao
         return $consulta->fetchAll();
     }
     
-    function find($crm=null)
+    function find($CRM=null)
     {
-        $sql = "SELECT * FROM medico WHERE crm=:crm";
+        $sql = "SELECT * FROM medico WHERE crm=:CRM";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('crm', $crm);
+        $consulta->bindValue('CRM', $CRM);
         $consulta->execute();
         return $consulta->fetchAll();
     }
+
     function gerarHashSenha($senha)
     {
         return password_hash($senha, PASSWORD_DEFAULT);;
     }
+    
     function verificarSenha($hash, $senha)
     {
         return password_verify($senha, $hash);
