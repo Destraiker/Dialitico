@@ -1,25 +1,46 @@
 <?php
 include __DIR__ . '/Conexao.php';
 
-class Medico extends Conexao
+class Usuario extends Conexao
 {
-    private $crm;
+    private $idUsuario;
     private $Nome;
-    private $senha;
+    private $Medico_idMedico;
+    private $CPF;
+    private $Senha;
 
+
+    function getMedico_idMedico()
+    {
+        return $this->Medico_idMedico;
+    }
+
+    function setMedico_idMedico($Medico_idMedico)
+    {
+        $this->Medico_idMedico = $Medico_idMedico;
+    }
+    function getCPF()
+    {
+        return $this->CPF;
+    }
+
+    function setCPF($CPF)
+    {
+        $this->CPF = $CPF;
+    }
     function getSenha()
     {
-        return $this->senha;
+        return $this->Senha;
     }
 
-    function setSenha($senha)
+    function setSenha($Senha)
     {
-        $this->senha = $senha;
+        $this->Senha = $Senha;
     }
 
-    function getCrm()
+    function getIdUsuario()
     {
-        return $this->crm;
+        return $this->idUsuario;
     }
 
     function getNome()
@@ -27,9 +48,9 @@ class Medico extends Conexao
         return $this->Nome;
     }
 
-    function setCrm($crm)
+    function setIdUsuario($idUsuario)
     {
-        $this->crm = $crm;
+        $this->idUsuario = $idUsuario;
     }
 
     function setNome($Nome)

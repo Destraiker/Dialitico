@@ -3,23 +3,44 @@ include __DIR__ . '/Conexao.php';
 
 class Medico extends Conexao
 {
-    private $crm;
+    private $idMedico;
     private $Nome;
-    private $senha;
+    private $Crm;
+    private $Login;
+    private $Senha;
+
+    function getIdMedico()
+    {
+        return $this->idMedico;
+    }
+
+    function setIdMedico($idMedico)
+    {
+        $this->idMedico = $idMedico;
+    }
+    function getLogin()
+    {
+        return $this->Login;
+    }
+
+    function setLogin($Login)
+    {
+        $this->Login = $Login;
+    }
 
     function getSenha()
     {
-        return $this->senha;
+        return $this->Senha;
     }
 
-    function setSenha($senha)
+    function setSenha($Senha)
     {
-        $this->senha = $senha;
+        $this->Senha = $Senha;
     }
 
     function getCrm()
     {
-        return $this->crm;
+        return $this->Crm;
     }
 
     function getNome()
@@ -27,9 +48,9 @@ class Medico extends Conexao
         return $this->Nome;
     }
 
-    function setCrm($crm)
+    function setCrm($Crm)
     {
-        $this->crm = $crm;
+        $this->Crm = $Crm;
     }
 
     function setNome($Nome)

@@ -9,19 +9,19 @@ class MedicoControl{
 		return $medico->insert($obj);
 	}
 
-	function update($obj,$crm){
+	function update($obj,$idMedico){
 		$medico = new Medico();
-		return $medico->update($obj,$crm);
+		return $medico->update($obj,$idMedico);
 	}
 
-	function delete($obj,$crm){
+	function delete($obj,$idMedico){
 		$medico = new Medico();
-		return $medico->delete($obj,$crm);
+		return $medico->delete($obj,$idMedico);
 	}
 
-	function find($crm = null){
+	function find($idMedico = null){
 		$medico = new Medico();
-		return $medico->find($crm);
+		return $medico->find($idMedico);
 	}
 	function findAll(){
 		$medico = new Medico();
