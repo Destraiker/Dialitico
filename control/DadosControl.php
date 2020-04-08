@@ -13,18 +13,13 @@ class DadosControl{
 		return $dados->update($obj,$idDados);
 	}
 
-	function delete($obj,$idDados){
-		$dados = new Dados();
-		return $dados->delete($obj,$idDados);
-	}
-
 	function find($idDados = null){
 		$dados = new Dados();
 		return $dados->find($idDados);
 	}
-	function findAll(){
+	function findAll($obj){
 		$dados = new Dados();
-		return $dados->findAll();
+		return $dados->findAll($obj);
 	}
 }
 ?>

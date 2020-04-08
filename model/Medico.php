@@ -40,7 +40,7 @@ class Medico extends Conexao
 
     function getCrm()
     {
-        return $this->Crm;
+        return $this->CRM;
     }
 
     function getNome()
@@ -48,9 +48,9 @@ class Medico extends Conexao
         return $this->Nome;
     }
 
-    function setCrm($Crm)
+    function setCrm($CRM)
     {
-        $this->Crm = $Crm;
+        $this->CRM = $CRM;
     }
 
     function setNome($Nome)
@@ -60,29 +60,29 @@ class Medico extends Conexao
 
     function insert($obj)
     {
-        $sql = "INSERT INTO medico(Nome,CRM,Login,Senha) VALUES (:Nome,:CRM,:login,:Senha)";
+        $sql = "INSERT INTO medico(Nome,CRM,Login,Senha) VALUES (:Nome,:CRM,:Login,:Senha)";
         $consulta = Conexao::prepare($sql);
         $consulta->bindValue('Nome', $obj->Nome);
-        $consulta->bindValue('CRM', $obj->Crm);
+        $consulta->bindValue('CRM', $obj->CRM);
         $consulta->bindValue('Login', $obj->Login);
         $consulta->bindValue('Senha', $this->gerarHashSenha($obj->Senha));
         return $consulta->execute();
     }
 
-    function update($obj, $crm = null)
+    function update($obj,$idMedico = null)
     {
-        $sql = "UPDATE medico SET nome = :Nome WHERE crm = :CRM ";
+        $sql = "UPDATE medico SET Senha = :Senha WHERE idMedico = :idMedico ";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('Nome', $obj->Nome);
-        $consulta->bindValue('CRM', $Crm);
+        $consulta->bindValue('Senha', $this->gerarHashSenha($obj->Senha));
+        $consulta->bindValue('idMedico', $idMedico);
         return $consulta->execute();
     }
 
-    function delete($obj, $CRM = null)
+    function delete($idMedico = null)
     {
-        $sql = "DELETE FROM medico WHERE crm = :Crm";
+        $sql = "DELETE FROM medico WHERE idMedico = :idMedico";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('Crm', $Crm);
+        $consulta->bindValue('idMedico', $idMedico);
         $consulta->execute();
     }
 

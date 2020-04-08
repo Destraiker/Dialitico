@@ -9,5 +9,6 @@ $id = $obj->id;
 
 if (!empty($data)) {
     $medicoControl = new MedicoControl();
-    $medicoControl->delete($obj, $id);
+    $mensagem=$medicoControl->delete($id);
+    echo json_encode(array("mensagem" => $mensagem));
 }

@@ -13,7 +13,8 @@ if (!$id) {
 } else {
     if (!empty($data)) {
         $medicoControl = new MedicoControl();
-        $medicoControl->update($obj, $id);
+        $mensagem=$medicoControl->update($obj, $id);
+        echo json_encode(array("mensagem" => $mensagem));
     } else {
         http_response_code(400);
         echo json_encode(array("mensagem" => "Não foram enviados parâmetros"));

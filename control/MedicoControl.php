@@ -14,9 +14,9 @@ class MedicoControl{
 		return $medico->update($obj,$idMedico);
 	}
 
-	function delete($obj,$idMedico){
+	function delete($idMedico){
 		$medico = new Medico();
-		return $medico->delete($obj,$idMedico);
+		return $medico->delete($idMedico);
 	}
 
 	function find($idMedico = null){

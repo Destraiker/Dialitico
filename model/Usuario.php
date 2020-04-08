@@ -69,20 +69,20 @@ class Usuario extends Conexao
         return $consulta->execute();
     }
 
-    function update($obj, $Senha = null)
+    function update($obj, $idUsuario = null)
     {
-        $sql = "UPDATE usuario SET senha = :Senha WHERE cpf = :CPF ";
+        $sql = "UPDATE usuario SET Senha = :Senha WHERE idUsuario = :idUsuario ";
         $consulta = Conexao::prepare($sql);
         $consulta->bindValue('Senha', $this->gerarHashSenha($obj->Senha));
-        $consulta->bindValue('CPF', $obj->CPF);
+        $consulta->bindValue('idUsuario', $idUsuario);
         return $consulta->execute();
     }
 
-    function delete($obj, $CPF = null)
+    function delete($idUsuario = null)
     {
-        $sql = "DELETE FROM usuario WHERE cpf = :CPF";
+        $sql = "DELETE FROM usuario WHERE idUsuario = :idUsuario";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('CPF', $CPF);
+        $consulta->bindValue('idUsuario', $idUsuario);
         $consulta->execute();
     }
 

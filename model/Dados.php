@@ -78,30 +78,30 @@ class Dados extends Conexao
         return $consulta->execute();
     }
 
-    function update($obj, $Liquido = null)
+    function update($obj, $idDados = null)
     {
-        $sql = "UPDATE dados SET Liquido = :Liquido WHERE  idUsuario = :idUsuario ";
+        $sql = "UPDATE dados SET Liquido = :Liquido WHERE  idDados = :idDados ";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('idUsuario', $obj->idUsuario);
-        $consulta->bindValue('Liquido', $Liquido);
+        $consulta->bindValue('idDados', $idDados);
+        $consulta->bindValue('Liquido', $obj->Liquido);
         return $consulta->execute();
     }
 
 
-    function findAll()
+    function findAll($obj)
     {
-        $sql = "SELECT * FROM dados WHERE idUsuario = :idUsuario";
+        $sql = "SELECT * FROM dados WHERE Usuario_idUsuario = :idUsuario";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('idUsuario', $obj->idUsuario);
+        $consulta->bindValue('idUsuario', $obj->Usuario_idUsuario);
         $consulta->execute();
         return $consulta->fetchAll();
     }
 
     function find($Usuario_idUsuario = null)
     {
-        $sql = "SELECT * FROM dados WHERE idUsuario=:idUsuario";
+        $sql = "SELECT * FROM dados WHERE Usuario_idUsuario=:idUsuario";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('idUsuario', $idUsuario);
+        //$consulta->bindValue('idUsuario', $idUsuario);
         $consulta->execute();
         return $consulta->fetchAll();
     }
