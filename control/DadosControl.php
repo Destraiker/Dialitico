@@ -17,9 +17,9 @@ class DadosControl{
 		$dados = new Dados();
 		return $dados->find($idDados);
 	}
-	function findAll($obj){
+	function findAll($idUsuario){
 		$dados = new Dados();
-		return $dados->findAll($obj);
+		return $dados->findAll($idUsuario);
 	}
 }
 ?>

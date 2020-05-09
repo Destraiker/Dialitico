@@ -94,11 +94,11 @@ class Medico extends Conexao
         return $consulta->fetchAll();
     }
     
-    function find($CRM=null)
+    function find($idMedico=null)
     {
-        $sql = "SELECT * FROM medico WHERE crm=:CRM";
+        $sql = "SELECT * FROM medico WHERE idMedico=:idMedico";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('CRM', $CRM);
+        $consulta->bindValue('idMedico', $idMedico);
         $consulta->execute();
         return $consulta->fetchAll();
     }

@@ -88,11 +88,11 @@ class Dados extends Conexao
     }
 
 
-    function findAll($obj)
+    function findAll($idUsuario)
     {
         $sql = "SELECT * FROM dados WHERE Usuario_idUsuario = :idUsuario";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('idUsuario', $obj->Usuario_idUsuario);
+        $consulta->bindValue('idUsuario', $idUsuario);
         $consulta->execute();
         return $consulta->fetchAll();
     }

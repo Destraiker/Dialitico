@@ -1,4 +1,7 @@
 <?php
+
+header('Access-Control-Allow-Origin: *');
+
 //define('PASTAPROJETO', 'AulaBanco');
 define('PASTAPROJETO', 'Dialitico');
 
@@ -34,6 +37,17 @@ http: //localhost:8080/PhpBackEnd
 // IDENTIFICA A URI DA REQUISIÇÃO
 
 
+if (strstr($request, '/' . PASTAPROJETO . '/dados')) {
+	require __DIR__ . '/api/' . $answer . '_dados.php';
+} else if (strstr($request, '/' . PASTAPROJETO . '/medico')) {
+	require __DIR__ . '/api/' . $answer . '_medico.php';
+} else if (strstr($request, '/' . PASTAPROJETO . '/usuario')) {
+	require __DIR__ . '/api/' . $answer . '_usuario.php';
+} else {
+	json_encode(array("mensagem" => "URL invalida"));
+}
+
+/*
 switch ($request) {
 	case '/' . PASTAPROJETO . '/':
 		require __DIR__ . '/api/api.php';
@@ -53,5 +67,7 @@ switch ($request) {
 
 	default:
 		//require __DIR__ . '/api/404.php';
+		echo "Sem pagina";
 		break;
 }
+*/

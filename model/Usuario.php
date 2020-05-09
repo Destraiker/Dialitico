@@ -94,11 +94,11 @@ class Usuario extends Conexao
         return $consulta->fetchAll();
     }
     
-    function find($CPF=null)
+    function find($idUsuario=null)
     {
-        $sql = "SELECT * FROM usuario WHERE cpf = :CPF";
+        $sql = "SELECT * FROM usuario WHERE idUsuario = :idUsuario";
         $consulta = Conexao::prepare($sql);
-        $consulta->bindValue('CPF', $CPF);
+        $consulta->bindValue('idUsuario', $idUsuario);
         $consulta->execute();
         return $consulta->fetchAll();
     }
